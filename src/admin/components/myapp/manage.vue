@@ -10,11 +10,7 @@
         <a-input placeholder="请输入应用名称" @change="searchName"/>
       </a-col>
       <a-col :span="7">
-        <a-select
-          style="width: 100%"
-          placeholder="请选择应用类型"
-          @change="searchType"
-        >
+        <a-select style="width: 100%" placeholder="请选择应用类型" @change="searchType">
           <a-select-option value>全部</a-select-option>
           <a-select-option value="mobile">手机端</a-select-option>
           <a-select-option value="desktop">PC端</a-select-option>
@@ -34,12 +30,7 @@
       :locale="{'emptyText': '您还没有应用，去新建一个吧'}"
     >
       <template slot="pic" slot-scope="pic">
-        <img
-          :src="pic || defaultImg"
-          width="60px"
-          height="60px"
-          alt="应用缩略"
-        />
+        <img :src="pic || defaultImg" width="60px" height="60px" alt="应用缩略">
       </template>
       <div slot="actions" slot-scope="actions,record">
         <a-tag color="#17BC94" @click="goDesigner(record)">设计</a-tag>
@@ -63,18 +54,10 @@
         </a-popconfirm>
         <a-tag @click="goDetails(record)" color="#17BC94">详情</a-tag>
         <a-tag color="#17BC94" @click="handleEdit(record)">编辑</a-tag>
-        <a-tag
-          v-if="record.status != 'firing'"
-          color="red"
-          @click="showConfirm(record)"
-        >删除</a-tag>
+        <a-tag v-if="record.status != 'firing'" color="red" @click="showConfirm(record)">删除</a-tag>
       </div>
     </a-table>
-    <create-app-modal
-      :visible="visible"
-      :closeModal="closeModal"
-      :appData="appData"
-    ></create-app-modal>
+    <create-app-modal :visible="visible" :closeModal="closeModal" :appData="appData"></create-app-modal>
   </div>
 </template>
 
@@ -86,6 +69,7 @@ import { columns } from '../common/columns';
 import * as service from '../../service/index';
 import Tools from '../../../common/utils/tools';
 import { updateAppstore } from '../../service/index';
+import { adminUrl } from '@/common/config/env'
 
 const utils = new Tools();
 const app = namespace('app');
@@ -117,7 +101,7 @@ export default class MyappManage extends Vue {
 
   searchParam: any = { appName: '', screen: '' };
 
-  created() {}
+  created() { }
 
   mounted() {
     let userID: any = utils.getCookie('userID');
@@ -145,12 +129,13 @@ export default class MyappManage extends Vue {
   goDesigner(record) {
     let pageInfor = JSON.parse(record.pageInfor);
     let defaultPage = Object.keys(pageInfor)[0];
-    this.$router.push({
-      path: `/designer/${record.appID}/${defaultPage}`,
-      query: {
-        screen: record.screen
-      }
-    });
+    window.open(`${adminUrl}#/designer/${record.appID}/${defaultPage}`, '_self')
+    // this.$router.push({
+    //   path: `/designer/${record.appID}/${defaultPage}`,
+    //   query: {
+    //     screen: record.screen
+    //   }
+    // });
   }
   handleEdit(record) {
     this.openModal();
@@ -188,7 +173,7 @@ export default class MyappManage extends Vue {
       onOk() {
         self.deleteApp(item.appID);
       },
-      onCancel() {}
+      onCancel() { }
     });
   }
   async handleActions(type) {
@@ -210,12 +195,12 @@ export default class MyappManage extends Vue {
     this.getApps(userID, this.searchParam);
   }
   addToAppstore(record) {
-    this.updateAppstore({appID: record.appID,isMarket: 1})
+    this.updateAppstore({ appID: record.appID, isMarket: 1 })
   }
   deleteFromAppstore(record) {
-    this.updateAppstore({appID: record.appID,isMarket: 0})
+    this.updateAppstore({ appID: record.appID, isMarket: 0 })
   }
-  updateAppstore(data){
+  updateAppstore(data) {
     let userID = utils.getCookie('userID');
     service.updateAppstore(userID, data).then((res: any) => {
       if (res === 'success') {
