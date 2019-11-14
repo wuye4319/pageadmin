@@ -2,20 +2,20 @@ import axios from 'axios';
 import Tools from './tools';
 const utils = new Tools();
 export default class Axios {
-  get(url,params?){
+  get(url, params?) {
     utils.getCookie('userID');
-    axios.get(url,{params: params});
+    axios.get(url, { params: params });
   }
-  post(url,params?){
+  post(url, params?) {
     utils.getCookie('userID');
-    axios.post(url,{params: params})
+    axios.post(url, { params: params })
   }
-  put(url,params?){
+  put(url, params?) {
     utils.getCookie('userID');
-    axios.put(url,{params: params})
+    axios.put(url, { params: params })
   }
-  delete(url,params){
+  delete(url, params) {
     utils.getCookie('userID');
-    axios.delete(url,{params: params})
+    axios.delete(url, { params: params })
   }
 }

@@ -2,7 +2,7 @@
   <div>
     <a-modal
       class="uploadModal"
-      title="创建组件"
+      title="新建表"
       :visible="visible"
       @cancel="handleCancle"
       :closable="true"
@@ -11,16 +11,16 @@
     >
       <a-form :form="form" @submit="handleSubmit">
         <a-form-item
-          label="名称"
+          label="表名"
           :label-col="{ span: 5 }"
           :wrapper-col="{ span: 18 }"
         >
           <a-input
-            placeholder="请输入组件名称"
+            placeholder="请输入表英文名称"
             v-decorator="[
-              'compName',
+              'tableName',
               {
-                rules: [{ required: true, message: '请输入组件英文名称!' },
+                rules: [{ required: true, message: '请输入表英文名称!' },
                         {validator: validateCompName,}
                 ],
               }
@@ -28,19 +28,33 @@
           />
         </a-form-item>
         <a-form-item
-          label="标题"
+          label="中文名"
           :label-col="{ span: 5 }"
           :wrapper-col="{ span: 18 }"
         >
           <a-input
-            placeholder="请输入组件名称"
+            placeholder="请输入表中文名称"
             v-decorator="[
               'title',
               {
-                rules: [{ required: true, message: '请输入组件名称!' }],
+                rules: [{ required: true, message: '请输入表中文名称!' }],
               }
             ]"
           />
+        </a-form-item>
+        <a-form-item
+          label="描述"
+          :label-col="{ span: 5 }"
+          :wrapper-col="{ span: 18 }"
+        >
+          <a-textarea
+            placeholder="请输入表描述"
+            v-decorator="[
+              'description',
+              {
+              }
+            ]"
+          ></a-textarea>
         </a-form-item>
         <a-form-item :wrapper-col="{ span: 18, offset: 5 }">
           <a-button type="primary" html-type="submit">确认</a-button>
@@ -56,6 +70,7 @@ import { State, Action, Mutation, namespace } from 'vuex-class';
 import { Upload, Form, Input, Modal } from 'ant-design-vue';
 import * as service from '../../service/index';
 import Tools from '../../../common/utils/tools';
+import { addTable } from '../../service/tables';
 
 const utils = new Tools();
 @Component({
@@ -84,24 +99,22 @@ export default class CreateCompModal extends Vue {
     this.form.resetFields();
   }
 
+  getTableMessage(tableName) {}
   async handleSubmit(e) {
     let userID = utils.getCookie('userID');
     e.preventDefault();
     this.form.validateFields(async (err, values) => {
       if (!err) {
         let data = {
-          compName: values.compName,
-          type: 'custom',
+          tableName: values.tableName,
+          description: values.description,
           title: values.title
         };
-        let res = await service.addComp(userID, data);
-        if (res.data && res.data.status === 200) {
-          this.$message.success('创建成功！');
-          this.closeModal();
-          this.getCompStore(userID, { type: 'custom', compName: '' });
-        } else {
-          this.$message.info('创建失败，请重试！');
-        }
+        addTable(data).then((res: any) => {
+          if (res === 'success') {
+            this.$message.success('创建成功')
+          }
+        });
       }
     });
   }
@@ -110,7 +123,7 @@ export default class CreateCompModal extends Vue {
     const form = this.form;
     if (value) {
       let reg = /[a-zA-Z]$/g;
-      let res = reg.test(value);
+      let res:any = reg.test(value);
       if (!res) {
         cbfn('只能输入英文字母');
       }

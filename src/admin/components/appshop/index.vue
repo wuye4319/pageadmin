@@ -10,11 +10,15 @@
         slot="renderItem"
         slot-scope="item"
       >
-        <a-card hoverable class="mycard" :bordered="false">
+        <a-card
+          hoverable
+          class="mycard"
+          :bordered="false"
+        >
           <img
             alt="example"
             slot="cover"
-            width='120px'
+            width="120px"
             :src="defaultImg"
           />
           <a-card-meta :title="item.appName" :description="item.description"/>
@@ -94,10 +98,10 @@ export default class appshopComponent extends Vue {
     let userID = utils.getCookie('userID');
     addAppCollect(userID, item).then((res:any) => {
       if (res === 'success') {
-        this.$message.success('收藏成功！')
-      } else if(res === 'failed'){
-        this.$message.error('收藏失败，请重试！')
-      }else{
+        this.$message.success('收藏成功！');
+      } else if (res === 'failed') {
+        this.$message.error('收藏失败，请重试！');
+      } else {
         this.$message.warning(res);
       }
     });
@@ -110,15 +114,15 @@ export default class appshopComponent extends Vue {
     let submitData = {
       appID: item.appID,
       isMarket: 0
-    }
+    };
     updateAppstore(userID, submitData).then((res: any) => {
       if (res === 'success') {
-        this.$message.success('应用下架成功！')
+        this.$message.success('应用下架成功！');
         this.getAppStore();
       } else {
-        this.$message.error('应用下架失败，请重试！')
+        this.$message.error('应用下架失败，请重试！');
       }
-    })
+    });
   }
 }
 </script>

@@ -91,11 +91,11 @@ export default class UploadModal extends Vue {
   submitData: any = {};
   appNameStatus: any ={
     validateStatus: 'success',
-    errorMsg: null,
+    errorMsg: null
   }
   appDescriptionStatus:any = {
     validateStatus: 'success',
-    errorMsg: null,
+    errorMsg: null
   }
 
   @Prop() visible;
@@ -112,12 +112,12 @@ export default class UploadModal extends Vue {
     this.closeModal();
     this.appNameStatus = {
       validateStatus: 'success',
-      errorMsg: null,
-    }
+      errorMsg: null
+    };
     this.appDescriptionStatus = {
       validateStatus: 'success',
-      errorMsg: null,
-    }
+      errorMsg: null
+    };
     this.form.resetFields();
   }
 
@@ -161,7 +161,7 @@ export default class UploadModal extends Vue {
       if (!err) {
         let nameAble = this.validateNameLength(values.appName, 'appName');
         let descAble = this.validateNameLength(values.description, 'description');
-        if (!nameAble || !descAble) { return }
+        if (!nameAble || !descAble) { return; }
         let res: any = {};
         if (this.appData.appName) {
           res = await service.editApp(this.appData.appID, values);

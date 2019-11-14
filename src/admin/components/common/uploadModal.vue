@@ -170,7 +170,7 @@ export default class UploadModal extends Vue {
 
   async handleSubmit(e) {
     e.preventDefault();
-    let userID = utils.getCookie('userID')
+    let userID = utils.getCookie('userID');
     this.form.validateFields(async (err, values) => {
       if (!err) {
         let data = {
@@ -186,7 +186,7 @@ export default class UploadModal extends Vue {
           this.$message.success('上传成功！');
           this.closeModal();
           this.form.resetFields();
-          this.getCompStore(userID,{ type: 'custom', compName: '' });
+          this.getCompStore(userID, { type: 'custom', compName: '' });
         } else {
           this.$message.info('上传失败！');
         }

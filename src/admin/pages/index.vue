@@ -101,7 +101,8 @@ const myCompMenu: Array<object> = [
   { name: '我的收藏', key: 'mycomp-collect' }
 ];
 const devGuides: Array<object> = [
-  { name: '设计器插件安装说明', key: 'guide-use' },
+  // { name: '设计器插件安装说明', key: 'guide-use' },
+  { name: '设计我的第一个页面', key: 'guide-use' },
   { name: '自定义组件开发说明', key: 'guide-comp' },
   { name: '自定义组件上传说明', key: 'guide-upload' },
   { name: '视图层数据结构说明', key: 'guide-data' },
@@ -112,9 +113,10 @@ const devGuides: Array<object> = [
 const appMenu: Array<object> = [
   { key: 'myapp', name: '我的应用', icon: 'user', children: myappMenu },
   { key: 'mycomp', name: '自定义组件', icon: 'inbox', children: myCompMenu },
+  { key: 'database', name: '数据中心', icon: 'database', children: [] },
   { key: 'guide', name: '开发指南', icon: 'setting', children: devGuides },
   { key: 'appshop', name: '应用市场', icon: 'shop', children: [] },
-  { key: 'compshop', name: '组件市场', icon: 'shopping', children: [] },
+  { key: 'compshop', name: '组件市场', icon: 'shopping', children: [] }
 ];
 
 @Component({
@@ -181,8 +183,8 @@ export default class Pageindex extends Vue {
   closeUserModal() {
     this.userVisible = false;
   }
-  goToAppMarket(){
-    this.$router.push({path: '/appMarket'})
+  goToAppMarket() {
+    this.$router.push({ path: '/appMarket' });
   }
 }
 </script>

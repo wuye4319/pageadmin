@@ -63,4 +63,4 @@ export const columns = {
       scopedSlots: { customRender: 'actions' }
     }
   ]
-}
+};

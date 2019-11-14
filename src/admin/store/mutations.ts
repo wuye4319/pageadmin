@@ -4,20 +4,20 @@ import { App } from './types';
 
 const mutations: MutationTree<AppState> = {
   [App.myapp](state, param) {
-    state.myapp = param
+    state.myapp = param;
   },
   [App.compDetail](state, param) {
-    state.compDetail = param
+    state.compDetail = param;
   },
   [App.compList](state, param) {
-    state.compList = param
+    state.compList = param;
   },
   [App.changeCompDetail](state, param) {
-    state.compDetail = param
+    state.compDetail = param;
   },
   [App.appDetail](state, param) {
-    state.appDetail = param
-  },
+    state.appDetail = param;
+  }
 };
 
 export default mutations;

@@ -12,10 +12,10 @@ const actions: ActionTree<AppState, GlobalState> = {
     commit(App.myapp, param);
   },
   [App.compDetail]({ commit }, param) {
-    commit(App.compDetail, param)
+    commit(App.compDetail, param);
   },
   [App.compList]({ commit }, param) {
-    commit(App.compList, param)
+    commit(App.compList, param);
   }
 };
 

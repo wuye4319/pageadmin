@@ -24,7 +24,7 @@
               okText="确认"
               cancelText="取消"
             >
-              <a-icon type="delete" />
+              <a-icon type="delete"/>
             </a-popconfirm>
             <a-icon type="edit" @click="goDetails(item)"/>
           </template>
@@ -40,7 +40,7 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { State, Action, Mutation, namespace } from 'vuex-class';
 import { Upload } from 'ant-design-vue';
-import { getAppCollect, deleteCompStore, deleteAppCollect, } from '../../service/index';
+import { getAppCollect, deleteCompStore, deleteAppCollect } from '../../service/index';
 import Tools from '../../../common/utils/tools';
 const utils = new Tools();
 const defaultImg = require('../../../../static/images/appImg.png');
@@ -68,17 +68,17 @@ export default class MyappCollect extends Vue {
     let userID = utils.getCookie('userID');
     getAppCollect(userID).then((res: any) => {
       this.data = res;
-    })
+    });
   }
 
   handleDelete(item) {
-    let userID = utils.getCookie("userID");
-    deleteAppCollect(userID,{appID: item.appID}).then((res: any)=>{
-      if(res === 'success'){
+    let userID = utils.getCookie('userID');
+    deleteAppCollect(userID, { appID: item.appID }).then((res: any) => {
+      if (res === 'success') {
         this.$message.success('应用已从收藏夹移除');
         this.getAppCollect();
-      }else{
-        this.$message.error('删除失败，请重试！')
+      } else {
+        this.$message.error('删除失败，请重试！');
       }
     });
   }
@@ -89,7 +89,6 @@ export default class MyappCollect extends Vue {
     });
     this.setAppDetail(record);
   }
-
 }
 </script>
 

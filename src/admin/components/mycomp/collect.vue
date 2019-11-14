@@ -36,7 +36,7 @@
               okText="确认"
               cancelText="取消"
             >
-              <a-icon type="delete" />
+              <a-icon type="delete"/>
             </a-popconfirm>
           </template>
           <a-card-meta :title="item.compName" @click="showDetail(item)"></a-card-meta>
@@ -52,7 +52,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { State, Action, Mutation, namespace } from 'vuex-class';
 import { Upload } from 'ant-design-vue';
 import UploadModal from '../common/uploadModal.vue';
-import { getCompStore, deleteCompStore,getCompCollect,deleteCompCollect } from '../../service/index';
+import { getCompStore, deleteCompStore, getCompCollect, deleteCompCollect } from '../../service/index';
 import compStoreComponent from '../../../website/components/comp_store/comp_store.vue';
 import AppState from '../../store';
 import Tools from '../../../common/utils/tools';
@@ -87,7 +87,7 @@ export default class complistComponent extends Vue {
 
   // 获取组件列表
   async getCompCollect() {
-    let userID = utils.getCookie("userID");
+    let userID = utils.getCookie('userID');
     getCompCollect(userID).then((res: any) => {
       this.compStore = res;
     });
@@ -101,15 +101,15 @@ export default class complistComponent extends Vue {
   }
 
   handleDelete(item) {
-    let userID = utils.getCookie("userID");
-    deleteCompCollect(userID,{compID: item.compID}).then((res: any) => {
-      if(res === 'success'){
+    let userID = utils.getCookie('userID');
+    deleteCompCollect(userID, { compID: item.compID }).then((res: any) => {
+      if (res === 'success') {
         this.$message.success('组件已从收藏夹移除');
         this.getCompCollect();
-      }else{
-        this.$message.error('删除失败，请重试！')
+      } else {
+        this.$message.error('删除失败，请重试！');
       }
-    })
+    });
   }
 
   showDetail(item) {

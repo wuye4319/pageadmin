@@ -26,9 +26,9 @@
           :key="item.appID"
         >
           <a-card>
-            <template slot='title'>
-            <h3>{{i}}</h3>
-            <p>{{item.title}}</p>
+            <template slot="title">
+              <h3>{{ i }}</h3>
+              <p>{{ item.title }}</p>
             </template>
             <div class="comps" style="height: 80px;overflow: scroll">
               <a-tag
@@ -75,7 +75,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { State, Action, Mutation, namespace } from 'vuex-class';
 import showDown from 'showdown';
 import RouterConfigModal from '../common/routerConfigModal.vue';
-import { saveComp,getAppDetail,updateAppstore } from '../../service/index';
+import { saveComp, getAppDetail, updateAppstore } from '../../service/index';
 import Tools from '../../../common/utils/tools';
 const utils = new Tools();
 
@@ -92,11 +92,11 @@ export default class detailModal extends Vue {
   visible = false;
   appDetail = {};
 
-  created(){
+  created() {
     let appID = this.$route.query.appID;
     getAppDetail(appID).then((res: any) => {
       this.appDetail = res;
-    })
+    });
   }
   openModal() {
     this.visible = true;
@@ -107,20 +107,20 @@ export default class detailModal extends Vue {
   }
 
   addToAppstore(record) {
-    this.updateAppstore({appID: record.appID,isMarket: 1})
+    this.updateAppstore({ appID: record.appID, isMarket: 1 });
   }
   deleteFromAppstore(record) {
-    this.updateAppstore({appID: record.appID,isMarket: 0})
+    this.updateAppstore({ appID: record.appID, isMarket: 0 });
   }
-  updateAppstore(data){
+  updateAppstore(data) {
     let userID = utils.getCookie('userID');
     updateAppstore(userID, data).then((res: any) => {
       if (res === 'success') {
         this.$message.success('应用下架成功！');
       } else {
-        this.$message.error('应用下架失败，请重试！')
+        this.$message.error('应用下架失败，请重试！');
       }
-    })
+    });
   }
 
   back() {

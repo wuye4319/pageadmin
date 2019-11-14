@@ -11,7 +11,7 @@ import axios from 'axios';
  */
 export const saveComp = (user, data) => {
   return axios.post(`${baseUrl}/page/compstore/${user}`, { params: data });
-}
+};
 
 /**
  * 快速新增自定义组件接口
@@ -19,19 +19,19 @@ export const saveComp = (user, data) => {
  */
 export const addComp = (user, data) => {
   return axios.post(`${baseUrl}/upload/newcomp/${user}`, { params: data });
-}
+};
 
 // 修改组件
 export const editComp = (user, data) => {
   return axios.put(`${baseUrl}/page/compstore/${user}`, { params: data });
-}
+};
 
 /**
  * 获取组件列表接口
  */
 export const getCompStore = (user, params) => {
   return axios.get(`${baseUrl}/page/compstore/${user}`, { params: params });
-}
+};
 
 /**
   *
@@ -40,21 +40,21 @@ export const getCompStore = (user, params) => {
   */
 export const deleteCompStore = (user, params) => {
   return axios.delete(`${baseUrl}/page/compstore/${user}`, { params: params });
-}
+};
 
 /**
  * 获取组件详情
  */
 export const getCompDetail = (compID) => {
-  return new Promise(async(resolve,reject) => {
+  return new Promise(async(resolve, reject) => {
     let res = await axios.get(baseUrl + '/comps/compdetail/' + compID);
-    if(res.data.status === 200){
+    if (res.data.status === 200) {
       resolve(res.data.data);
-    }else{
+    } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 获取操作文档接口
@@ -66,10 +66,10 @@ export const getGuideDoc = (docName) => {
     if (res.data) {
       resolve(res.data);
     } else {
-      reject(new Error('error'))
+      reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 获取应用列表
@@ -78,7 +78,7 @@ export const getGuideDoc = (docName) => {
  */
 export const getApps = (userID, query) => {
   return axios.get(`${baseUrl}/page/apps/${userID}`, { params: query });
-}
+};
 /**
  * 新增应用
  * @param userID 用户ID
@@ -86,8 +86,16 @@ export const getApps = (userID, query) => {
  */
 export const addApp = (userID, params) => {
   return axios.post(`${baseUrl}/page/apps/${userID}`, { params: params });
-}
+};
 
+/**
+ * 分享应用
+ * @param userID 用户ID
+ * @param query 查询条件
+ */
+export const shareApp = (userID, params) => {
+  return axios.post(`${baseUrl}/page/shareApp/${userID}`, { params: params });
+};
 /**
  *
  * @param appID
@@ -96,7 +104,7 @@ export const addApp = (userID, params) => {
 
 export const editApp = (appID, params) => {
   return axios.put(`${baseUrl}/page/apps/${appID}`, { params: params });
-}
+};
 
 /**
  * 删除应用
@@ -104,19 +112,19 @@ export const editApp = (appID, params) => {
  */
 
 export const deleteApp = (userID, appID) => {
-  return axios.delete(`${baseUrl}/page/apps/${userID}`, { params: appID })
-}
+  return axios.delete(`${baseUrl}/page/apps/${userID}`, { params: appID });
+};
 
 export const getAppDetail = (appID) => {
-  return new Promise(async(resolve,reject)=>{
-    let res = await axios.get(baseUrl+'/apps/appdetail/' + appID);
-    if(res.data.status === 200){
+  return new Promise(async(resolve, reject) => {
+    let res = await axios.get(baseUrl + '/apps/appdetail/' + appID);
+    if (res.data.status === 200) {
       resolve(res.data.data);
-    }else{
+    } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};
 /**
  * 修改用户数据
  */
@@ -126,10 +134,10 @@ export const editUserInfo = async (userID, data) => {
     if (res.data.status === 200) {
       resolve(res.data.data);
     } else {
-      reject(new Error('error'))
+      reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 获取应用市场数据
@@ -142,8 +150,8 @@ export const getAppStore = async () => {
     } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 将应用发不到应用市场
@@ -156,8 +164,8 @@ export const updateAppstore = (userID, data) => {
     } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 获取收藏的应用
@@ -170,8 +178,8 @@ export const getAppCollect = (usrID) => {
     } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 收藏应用
@@ -184,8 +192,8 @@ export const addAppCollect = (userID, params) => {
     } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 删除收藏应用
@@ -198,9 +206,8 @@ export const deleteAppCollect = (userID, params) => {
     } else {
       reject(new Error('error'));
     }
-  })
-}
-
+  });
+};
 
 /**
  * 获取组件市场中的组件
@@ -213,22 +220,22 @@ export const getCompMarket = async () => {
     } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 将组件发布到组件市场
  */
-export const updateCompMarket = async (userID,params) => {
+export const updateCompMarket = async (userID, params) => {
   return new Promise(async (resolve, reject) => {
-    let res = await axios.post(baseUrl + '/comps/compsmarket/'+userID,{params: params});
+    let res = await axios.post(baseUrl + '/comps/compsmarket/' + userID, { params: params });
     if (res.data.status === 200) {
       resolve(res.data.data);
     } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 获取收藏的组件
@@ -241,33 +248,33 @@ export const getCompCollect = (userID) => {
     } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 获取收藏的组件
  */
-export const addCompCollect = (userID,params) => {
+export const addCompCollect = (userID, params) => {
   return new Promise(async(resolve, reject) => {
-    let res: any = await axios.post(baseUrl + '/comps/compcollect/' + userID,{params: params});
+    let res: any = await axios.post(baseUrl + '/comps/compcollect/' + userID, { params: params });
     if (res.data.status === 200) {
       resolve(res.data.data);
     } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};
 
 /**
  * 获取收藏的组件
  */
-export const deleteCompCollect = (userID,params) => {
+export const deleteCompCollect = (userID, params) => {
   return new Promise(async(resolve, reject) => {
-    let res: any = await axios.delete(baseUrl + '/comps/compcollect/' + userID,{params: params});
+    let res: any = await axios.delete(baseUrl + '/comps/compcollect/' + userID, { params: params });
     if (res.data.status === 200) {
       resolve(res.data.data);
     } else {
       reject(new Error('error'));
     }
-  })
-}
+  });
+};

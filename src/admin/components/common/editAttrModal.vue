@@ -60,7 +60,7 @@ export default class UploadModal extends Vue {
         this.$message.error('请重试');
       }
     } else {
-      this.$message.error('请输入正确的json格式数据')
+      this.$message.error('请输入正确的json格式数据');
     }
   }
 

@@ -7,7 +7,7 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { State, Action, Mutation, namespace } from 'vuex-class';
 import showDown from 'showdown';
-import { getGuideDoc } from '../../service/index'
+import { getGuideDoc } from '../../service/index';
 
 @Component({
   name: 'notice-component'
@@ -32,7 +32,7 @@ export default class noticeComponent extends Vue {
       if (res.status === 200) {
         self.htmlelement = self.convertor.makeHtml(res.data);
       }
-    })
+    });
   }
 }
 </script>

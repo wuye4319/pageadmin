@@ -24,7 +24,7 @@ export default class screenComponent extends Vue {
       query: {
         screen
       }
-    })
+    });
   }
 }
 </script>

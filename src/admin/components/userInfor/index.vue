@@ -108,7 +108,7 @@ export default class UserInfor extends Vue {
       userName,
       userPhone,
       userAge
-    }
+    };
   }
 
   back() {
@@ -126,7 +126,7 @@ export default class UserInfor extends Vue {
       if (!err) {
         let data = {
           userName: values.userName,
-          userAge: this.userAge,
+          userAge: this.userAge
         };
         editUserInfo(userID, data).then((res: any) => {
           if (res === 'success') {

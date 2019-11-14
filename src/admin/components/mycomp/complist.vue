@@ -37,8 +37,16 @@
         />
       </template>
       <div slot="actions" slot-scope="actions,record">
-        <a-tag v-if="!record.isMarket" color="#17BC94" @click="addToCompMarket(record)">发布</a-tag>
-        <a-tag v-if="record.isMarket" color="#17BC94" @click="deleteCompMarket(record)">下架</a-tag>
+        <a-tag
+          v-if="!record.isMarket"
+          color="#17BC94"
+          @click="addToCompMarket(record)"
+        >发布</a-tag>
+        <a-tag
+          v-if="record.isMarket"
+          color="#17BC94"
+          @click="deleteCompMarket(record)"
+        >下架</a-tag>
         <a-tag color="#17BC94" @click="handleAttr(record)">编辑</a-tag>
         <a-tag @click="showDetail(record)" color="#17BC94">详情</a-tag>
         <a-tag
@@ -197,19 +205,19 @@ export default class complistComponent extends Vue {
     });
     this.changeCompDetail(item);
   }
-  addToCompMarket(record){
-    this.updateCompMarket({isMarket: 1,compID: record.compID})
+  addToCompMarket(record) {
+    this.updateCompMarket({ isMarket: 1, compID: record.compID });
   }
-  deleteCompMarket(record){
-    this.updateCompMarket({isMarket: 0,compID: record.compID})
+  deleteCompMarket(record) {
+    this.updateCompMarket({ isMarket: 0, compID: record.compID });
   }
-  updateCompMarket(data){
-    let userID = utils.getCookie("userID");
-    updateCompMarket(userID,data).then((res: any) => {
-      if(res === 'success'){
+  updateCompMarket(data) {
+    let userID = utils.getCookie('userID');
+    updateCompMarket(userID, data).then((res: any) => {
+      if (res === 'success') {
         this.$message.success('组件已发布到组件市场!');
-        this.getCompStore(userID, { type: 'custom', compName: '' })
-      }else{
+        this.getCompStore(userID, { type: 'custom', compName: '' });
+      } else {
         this.$message.error('组件发布失败，请重试!');
       }
     });

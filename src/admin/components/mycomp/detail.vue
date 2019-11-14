@@ -62,7 +62,7 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { State, Action, Mutation, namespace } from 'vuex-class';
 import showDown from 'showdown';
-import { saveComp,getCompDetail } from '../../service/index';
+import { saveComp, getCompDetail } from '../../service/index';
 
 @Component({
   name: 'detail-modal'
@@ -91,7 +91,7 @@ export default class detailModal extends Vue {
     let compID = this.$route.query.id;
     getCompDetail(compID).then((res: any) => {
       this.compDetail = res;
-    })
+    });
     this.markdown = this.compDetail.apiDesc;
     this.htmlelement = this.convertor.makeHtml(this.markdown);
   }

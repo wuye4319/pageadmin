@@ -19,7 +19,7 @@ const appModule: Module<AppState, any> = {
   state: new AppState(),
   mutations,
   getters,
-  actions,
+  actions
 };
 
 export default appModule;
