@@ -3,7 +3,7 @@ const appRouterInfo = [
   { name: 'appshop', meta: { title: '应用市场' } },
   { name: 'compshop', meta: { title: '组件市场' } },
   { name: 'guide', meta: { title: '开发指南' } },
-  { name: 'database', meta: { title: '开发指南' } }
+  { name: 'database', meta: { title: '数据中心' } }
 ];
 const myappRouterInfo = [ // myapp
   { name: 'manage', meta: { title: '我的应用管理' } },

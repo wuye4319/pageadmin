@@ -108,11 +108,15 @@ export default class CreateCompModal extends Vue {
         let data = {
           tableName: values.tableName,
           description: values.description,
-          title: values.title
+          title: values.title,
+          userID: userID
         };
         addTable(data).then((res: any) => {
           if (res === 'success') {
             this.$message.success('创建成功')
+            this.closeModal();
+          } else {
+            this.$message.error('创建失败，请重试！')
           }
         });
       }

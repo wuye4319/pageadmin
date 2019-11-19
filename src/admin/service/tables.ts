@@ -8,9 +8,9 @@ import axios from 'axios';
 /**
  * 获取数据库中的所有表
  */
-export const getAllTables = () => {
+export const getAllTables = (userID) => {
   return new Promise(async(resolve, reject) => {
-    let res: any = await axios.get(baseUrl + '/tables/alltables');
+    let res: any = await axios.get(baseUrl + '/tables/alltables/' + userID);
     if (res.data.status === 200) {
       resolve(res.data.data);
     } else {
@@ -45,3 +45,14 @@ export const getTableMessage = (tableName) => {
     }
   });
 };
+
+export const addTableColunm = (tableName, params) => {
+  return new Promise(async(resolve, reject) => {
+    let res: any = await axios.post(baseUrl + '/tables/addTableColumn/' + tableName, { params: params });
+    if (res.data.status === 200) {
+      resolve(res.data.data)
+    } else {
+      reject(new Error('error'));
+    }
+  })
+}

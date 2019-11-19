@@ -95,7 +95,6 @@ import createAppModal from '../common/createAppModal.vue';
 import { columns } from '../common/columns';
 import * as service from '../../service/index';
 import Tools from '../../../common/utils/tools';
-import { updateAppstore } from '../../service/index';
 import { adminUrl } from '@/common/config/env'
 
 const utils = new Tools();
@@ -157,7 +156,7 @@ export default class MyappManage extends Vue {
   goDesigner(record) {
     let pageInfor = JSON.parse(record.pageInfor);
     let defaultPage = Object.keys(pageInfor)[0];
-    window.open(`${adminUrl}#/designer/${record.appID}/${defaultPage}`, '_self')
+    window.open(`${adminUrl}#/designer/${record.appID}/${defaultPage}?screen=${record.screen}`, '_self')
   }
   handleEdit(record) {
     this.openModal();

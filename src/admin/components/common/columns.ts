@@ -21,12 +21,12 @@ export const columns = {
     },
     {
       title: '描述',
-      width: '40%',
+      width: '37%',
       dataIndex: 'description'
     },
     {
       title: '操作',
-      width: '25%',
+      width: '28%',
       dataIndex: 'actions',
       scopedSlots: { customRender: 'actions' }
     }
@@ -53,12 +53,12 @@ export const columns = {
     },
     {
       title: '描述',
-      width: '40%',
+      width: '37%',
       dataIndex: 'description'
     },
     {
       title: '操作',
-      width: '200px',
+      width: '28%',
       dataIndex: 'actions',
       scopedSlots: { customRender: 'actions' }
     }
